@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "A0Vy7HrVHJeBrCfcTz5F6A7heONdy4WCjwJhKzIc8wI=",
+  "Source": "FuelStationBackend",
+  "BasePath": "_content/FuelStationBackend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
