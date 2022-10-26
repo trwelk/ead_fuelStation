@@ -66,21 +66,23 @@ public class LoginFragment extends Fragment {
     private void login() {
         User user = new User(loginEmail.getText().toString(),loginPassword.getText().toString());
 
-        Call<User> call = webService.loginUser(user);
+        Call<List<User>> call = webService.loginUser(user);
 
-        call.enqueue(new Callback<User>() {
+        call.enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
 //                progressBar.setVisibility(View.GONE);
                 assert response.body() != null : "Response Body Empty";
-                User userResponse;
+                List<User> userResponse;
                 userResponse = response.body();
                 //sdasdsadsadsadsadsadas
                 if ( userResponse != null) {
-                    if (userSession.isUserLoggedIn() && userSession.getUserDetails().get(userSession.KEY_USER_TYPE).equals("Vehicle")){
+                    if (userResponse.get(0).getId() != null && userResponse.get(0).getUserType().equals("Vehicle")){
+                        Log.d("TAG", "Vehicle logged in: ");
                         Intent intent = new Intent(getContext(), FuelStationList.class);
                         startActivity(intent);                    }
                     else {
+                        Log.d("TAG", "Station logged in: ");
                         navigateFuelTypes();
                     }
                 }
@@ -88,7 +90,7 @@ public class LoginFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
 //                progressBar.setVisibility(View.GONE);
                 Log.d("TAG", "onFailure: " + t.getLocalizedMessage());
             }

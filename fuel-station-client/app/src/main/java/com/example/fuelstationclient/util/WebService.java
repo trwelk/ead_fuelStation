@@ -39,7 +39,7 @@ public interface WebService {
     Call<User> registerUser(@Body User user);
 
     @POST("User/Login")
-    Call<User> loginUser(@Body User user);
+    Call<List<User>> loginUser(@Body User user);
 
     @POST("FuelStation")
     Call<FuelStation> registerFuelStation(@Body FuelStation fuelStation);
