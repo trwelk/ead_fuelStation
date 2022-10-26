@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.fuelstationclient.FuelStationAdminPage;
 import com.example.fuelstationclient.model.Fuel;
 
 import com.example.fuelstationclient.FuelStationDetailActivity;
@@ -47,6 +50,8 @@ public class FuelTypeListAdapter extends RecyclerView.Adapter<FuelTypeListAdapte
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), FuelStationDetailActivity.class);
+//                Intent intent = new Intent(view.getContext(), FuelStationAdminPage.class);
+
                 intent.putExtra("fuelType", myListData);
                 intent.putExtra("fuelStation", fuelStation);
                 view.getContext().startActivity(intent);
@@ -66,9 +71,11 @@ public class FuelTypeListAdapter extends RecyclerView.Adapter<FuelTypeListAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView textView;
+        public Button btn;
         public RelativeLayout relativeLayout;
         public ViewHolder(View itemView) {
             super(itemView);
+            this.btn = (Button) itemView.findViewById(R.id.fuelavailabilityDisp);
             this.imageView = (ImageView) itemView.findViewById(R.id.listItemImageView);
             this.textView = (TextView) itemView.findViewById(R.id.listItemTextView);
             relativeLayout = (RelativeLayout)itemView.findViewById(R.id.listItemRelativeLayout);
