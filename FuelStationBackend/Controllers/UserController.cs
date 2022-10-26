@@ -31,10 +31,9 @@ public class UserController : Controller
     }
 
     [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] User user)
+    public async Task<List<User>> Login([FromBody] User user)
     {
-        await _userService.Login(user);
-        return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
+        return await _userService.Login(user);
     }
 
     [HttpDelete("{id}")]
