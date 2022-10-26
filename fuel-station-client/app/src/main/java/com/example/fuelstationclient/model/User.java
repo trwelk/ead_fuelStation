@@ -18,6 +18,9 @@ public class User {
     @SerializedName("userType")
     private String userType;
 
+    public User() {
+    }
+
     public String getUserType() {
         return userType;
     }
