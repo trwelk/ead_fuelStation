@@ -6,11 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.fuelstationclient.model.FuelStation;
-import com.example.fuelstationclient.util.FuelStationListAdapter;
+import com.example.fuelstationclient.adapter.FuelStationListAdapter;
 import com.example.fuelstationclient.util.WebService;
 import com.example.fuelstationclient.util.WebServiceClient;
 

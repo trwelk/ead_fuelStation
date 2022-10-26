@@ -23,8 +23,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/fuelStationDetailActivityTitle"
         android:background="@color/material_on_primary_emphasis_medium"
-        android:columnCount="3"
-        android:rowCount="3">
+        android:columnCount="2"
+        android:rowCount="6">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vehicles in station"
+                    android:text="Vehicles in Queue"
                     android:width="250dp"
                     android:textAlignment="center"
                     android:textSize="24dp"
@@ -134,11 +134,164 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
+            android:layout_rowWeight="0.5"
+            android:layout_column="0"
+            android:layout_columnWeight="2"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="8dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="30dp"
+                    android:src="@drawable/time" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
+                    android:width="250dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fuel Availability"
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/fuelAvailable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_rowWeight="0.5"
+            android:layout_column="0"
+            android:layout_columnWeight="0"
+            android:layout_gravity="start"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="30dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="8dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
+                    android:width="250dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time Arrived"
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/fuelArrivalTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textAlignment="center"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="3"
+            android:layout_rowWeight="0.5"
+            android:layout_column="0"
+            android:layout_columnWeight="0"
+            android:layout_gravity="end"
+            android:layout_margin="8dp"
+            android:layout_marginRight="30dp"
+            android:elevation="8dp"
+            app:cardCornerRadius="8dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center"
+                    android:width="250dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Finish Time"
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/fuelFinishTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textAlignment="center"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
             android:layout_rowWeight="2"
             android:layout_column="0"
             android:layout_columnWeight="1"
@@ -162,34 +315,24 @@
                     <Button
                         android:id="@+id/fuelStationDetailActivityJoinBtn"
                         android:layout_width="wrap_content"
-                        android:layout_height="120dp"
+                        android:layout_height="100dp"
                         android:background="@color/white"
                         android:drawableLeft="@drawable/join"
                         android:onClick="joinQueue"
+                        android:layout_marginLeft="5dp"
+
                         android:text="JOIN " />
 
                     <Button
                         android:id="@+id/fuelStationDetailActivityLeaveBtn"
                         android:layout_width="wrap_content"
-                        android:layout_height="130dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_height="110dp"
+                        android:layout_marginLeft="5dp"
                         android:drawableLeft="@drawable/leave"
                         android:onClick="leaveQueue"
                         android:text="Leave " />
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/fuelStationDetailActivityFuelTypes"
-                        android:layout_width="200dp"
-                        android:layout_height="120dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="80dp"
-                        android:drawableLeft="@drawable/fuel"
-                        android:text="Leave " />
-                </LinearLayout>
 
 
             </LinearLayout>

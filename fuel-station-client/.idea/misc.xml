@@ -10,11 +10,13 @@
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/drawable/ic_arrow_right.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20729166666666668" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/activity_fuel_station_detail.xml" value="0.1" />
+        <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/activity_fuel_station_fuel_types.xml" value="0.190625" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/activity_fuel_station_list.xml" value="0.17300724637681159" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/fragment_login.xml" value="0.1793478260869565" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/fragment_register.xml" value="0.1793478260869565" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/list_item.xml" value="0.12708333333333333" />
+        <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/layout/new_fuel_station_dialog.xml" value="0.23233695652173914" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/xml/network_security_config.xml" value="0.11822916666666666" />
       </map>
     </option>

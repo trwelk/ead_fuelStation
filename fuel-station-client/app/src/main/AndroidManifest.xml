@@ -13,8 +13,13 @@
         android:theme="@style/Theme.FuelStationClient"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".FuelStationDetailActivity"
+            android:name=".FuelStationFuelTypesActivity"
             android:exported="true" />
+        <activity
+            android:name=".FuelStationDetailActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FuelStationClient.NoActionBar"
+        />
         <activity
             android:name=".FuelStationList"
             android:exported="true" />

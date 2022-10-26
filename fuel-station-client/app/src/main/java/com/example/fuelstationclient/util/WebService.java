@@ -1,5 +1,6 @@
 package com.example.fuelstationclient.util;
 
+import com.example.fuelstationclient.model.Fuel;
 import com.example.fuelstationclient.model.FuelStation;
 import com.example.fuelstationclient.model.User;
 import com.example.fuelstationclient.model.UserQueue;
@@ -21,15 +22,24 @@ public interface WebService {
     @GET("FuelStation")
     Call<List<FuelStation>> getFuelStations();
 
-    @POST("FuelStation/{id}/VehiclesInQueue")
-    Call<UserQueue> joinQueue(@Path("id") String id,@Body UserQueue userQueue);
+    @GET("FuelStation/GetByUser/{id}")
+    Call<List<FuelStation>> getFuelStationByUser(@Path("id") String id);
 
-    @PATCH("FuelStation/{id}/VehiclesInQueue")
-    Call<UserQueue> leaveQueue(@Path("id") String id,@Body UserQueue userQueue);
+    @POST("FuelStation/{id}/FuelType/{fId}/VehiclesInQueue")
+    Call<UserQueue> joinQueue(@Path("id") String id,@Path("fId") String fId,@Body UserQueue userQueue);
 
+    @PATCH("FuelStation/{id}/FuelType/{fId}/VehiclesInQueue")
+    Call<UserQueue> leaveQueue(@Path("id") String id,@Path("fId") String fId,@Body UserQueue userQueue);
+
+
+    @POST("FuelStation/{id}/FuelType")
+    Call<Fuel> addFuelType(@Path("id") String id,@Body Fuel fuel);
 
     @POST("User")
-    Call<User> registerVehicle(@Body User user);
+    Call<User> registerUser(@Body User user);
+
+    @POST("User/Login")
+    Call<User> loginUser(@Body User user);
 
     @POST("FuelStation")
     Call<FuelStation> registerFuelStation(@Body FuelStation fuelStation);

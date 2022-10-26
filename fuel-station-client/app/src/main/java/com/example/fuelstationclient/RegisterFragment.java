@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +18,8 @@ import android.widget.EditText;
 import com.example.fuelstationclient.model.FuelStation;
 import com.example.fuelstationclient.model.User;
 import com.example.fuelstationclient.session.UserSession;
-import com.example.fuelstationclient.util.FuelStationListAdapter;
 import com.example.fuelstationclient.util.WebService;
 import com.example.fuelstationclient.util.WebServiceClient;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +42,7 @@ public class RegisterFragment extends Fragment {
     EditText registerEmailEditText;
     EditText registerPasswordEditText;
     EditText registerTypeEditText;
+    EditText registerAddress;
     Button registerSubmitBtn;
 
     public RegisterFragment() {
@@ -71,6 +68,8 @@ public class RegisterFragment extends Fragment {
         registerPasswordEditText = getActivity().findViewById(R.id.registerPasswordEditText);
         registerTypeEditText = getActivity().findViewById(R.id.registerTypeEditText);
         registerSubmitBtn = getActivity().findViewById(R.id.registerSubmitBtn);
+        registerAddress = getActivity().findViewById(R.id.registerAddress);
+        registerAddress.setVisibility(registerTypeEditText.getText().toString() == "Station" ?  View.VISIBLE: View.INVISIBLE);
         registerSubmitBtn.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //Do stuff here
@@ -80,12 +79,15 @@ public class RegisterFragment extends Fragment {
         });
     }
 
-    private void registerVehicle() {
+    private User registerUser() {
 
-        User user = new User(registerNameEditText.getText().toString(),registerEmailEditText.getText().toString(),registerPasswordEditText.getText().toString());
-
+        User user = new User(registerNameEditText.getText().toString(),
+                registerEmailEditText.getText().toString(),
+                registerPasswordEditText.getText().toString(),
+                registerTypeEditText.getText().toString());
+        final User[] userResponse = new User[1];
         WebService webService = WebServiceClient.getInstance().getWebService();
-        Call<User> call = webService.registerVehicle(user);
+        Call<User> call = webService.registerUser(user);
         Log.d("INFO", "Vehicle: " + registerNameEditText.getText().toString() );
 
         call.enqueue(new Callback<User>() {
@@ -93,10 +95,13 @@ public class RegisterFragment extends Fragment {
             public void onResponse(Call<User> call, Response<User> response) {
 //                progressBar.setVisibility(View.GONE);
                 assert response.body() != null : "Response Body Empty";
-                User userResponse = response.body();
-                responseId = userResponse.getId();
+                userResponse[0] = response.body();
+                responseId = userResponse[0].getId();
                 Log.d("TAG", "onResponse: " + response.code() + "user ID - " + responseId);
                 registerToSharedPreferences();
+                if (user.getUserType() == "Station"){
+                    registerFuelStation(userResponse[0].getId());
+                }
 
             }
 
@@ -106,13 +111,15 @@ public class RegisterFragment extends Fragment {
                 Log.d("TAG", "onFailure: " + t.getLocalizedMessage());
             }
         });
+        return userResponse[0];
     }
 
 
-    private void registerFuelStation() {
+    private FuelStation registerFuelStation(String userId) {
 
-        FuelStation fuelStation = new FuelStation(registerNameEditText.getText().toString(),registerEmailEditText.getText().toString(),registerPasswordEditText.getText().toString());
-
+        FuelStation fuelStation = new FuelStation(registerNameEditText.getText().toString(),registerEmailEditText.getText().toString(),registerPasswordEditText.getText().toString(),registerAddress.getText().toString());
+        fuelStation.setUserId(userId);
+        final FuelStation[] fuelStationResponse = {null};
         WebService webService = WebServiceClient.getInstance().getWebService();
         Call<FuelStation> call = webService.registerFuelStation(fuelStation);
         Log.d("TAG", "TRWELK: " + registerNameEditText.getText().toString() );
@@ -123,11 +130,12 @@ public class RegisterFragment extends Fragment {
 //                progressBar.setVisibility(View.GONE);
                 Log.d("TAG", "onResponse: " + response.code());
                 assert response.body() != null : "Response Body Empty";
-                FuelStation fuelStationResponse = response.body();
-                responseId = fuelStationResponse.getId();
+                fuelStationResponse[0] = response.body();
+                responseId = fuelStationResponse[0].getId();
                 Log.d("TAG", "onResponse: " + response.code() + "user ID - " + responseId);
-                registerToSharedPreferences();
-
+                Intent intent = new Intent(getActivity(), FuelStationFuelTypesActivity.class);
+                intent.putExtra("fuelStation", fuelStationResponse[0]);
+                startActivity(intent);
             }
 
             @Override
@@ -136,18 +144,27 @@ public class RegisterFragment extends Fragment {
                 Log.d("TAG", "onFailure: " + t.getLocalizedMessage());
             }
         });
+
+        return fuelStationResponse[0];
     }
 
     private void register(){
         if (registerTypeEditText.getText().toString().equals("Vehicle")) {
             Log.d("INFO", "Registering Vehicle");
-            registerVehicle();
+            User user = registerUser();
+
             Intent intent = new Intent(getActivity(), FuelStationList.class);
             startActivity(intent);
 
         } else {
-            Log.d("INFO", "Registering FuelStation");
-            registerFuelStation();
+            Log.d("INFO", "Registering User");
+            User user = registerUser();
+            Log.d("INFO", "Registering Station");
+
+//            FuelStation fuelStation = registerFuelStation();
+            Log.d("INFO", "Station Registered");
+
+
 
         }
         Log.d("INFO", "Registering Done");
@@ -168,13 +185,7 @@ public class RegisterFragment extends Fragment {
                                             registerPasswordEditText.getText().toString(),
                                             responseId,
                                             registerTypeEditText.getText().toString());
-//        sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("User", 0);
-//        editor = sharedPreferences.edit();
-//        editor.putString("name", registerNameEditText.getText().toString());
-//        editor.putString("email",registerEmailEditText.getText().toString());
-//        editor.putString("password",registerPasswordEditText.getText().toString());
-//        editor.putBoolean("isLoggedIn", true);
-//        editor.commit();
+
     }   // commit the values
 
 }

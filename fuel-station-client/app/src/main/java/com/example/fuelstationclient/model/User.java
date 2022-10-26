@@ -15,6 +15,17 @@ public class User {
     @SerializedName("password")
     private String password;
 
+    @SerializedName("userType")
+    private String userType;
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     public String getId() {
         return id;
     }
@@ -51,5 +62,18 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public User( String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+
+    public User(String name, String email, String password, String userType) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.userType = userType;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.fuelstationclient.util;
+package com.example.fuelstationclient.adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,9 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fuelstationclient.FuelStationDetailActivity;
-import com.example.fuelstationclient.FuelStationList;
-import com.example.fuelstationclient.MainActivity;
+import com.example.fuelstationclient.FuelStationFuelTypesActivity;
 import com.example.fuelstationclient.R;
 import com.example.fuelstationclient.model.FuelStation;
 
@@ -46,7 +44,7 @@ public class FuelStationListAdapter extends RecyclerView.Adapter<FuelStationList
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), FuelStationDetailActivity.class);
+                Intent intent = new Intent(view.getContext(), FuelStationFuelTypesActivity.class);
                 intent.putExtra("fuelStation", myListData);
                 view.getContext().startActivity(intent);
                 Toast.makeText(view.getContext(),"click on item: "+myListData.getName(),Toast.LENGTH_LONG).show();

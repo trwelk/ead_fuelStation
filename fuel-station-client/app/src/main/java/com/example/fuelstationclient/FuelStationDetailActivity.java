@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.fuelstationclient.model.Fuel;
 import com.example.fuelstationclient.model.FuelStation;
 import com.example.fuelstationclient.model.UserQueue;
 import com.example.fuelstationclient.session.UserSession;
@@ -25,40 +26,64 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class FuelStationDetailActivity extends AppCompatActivity {
+    Fuel fuel;
     FuelStation fuelStation;
     UserSession userSession;
     private TextView vehicleCount;
     private TextView averageTime ;
+    private TextView fuelAvailable;
+    private TextView fuelArrivalTimeTextView ;
+    private TextView fuelFinishTimeTextView ;
     private Button joinBtn ;
     private Button leaveBtn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        fuel = (Fuel) getIntent().getSerializableExtra("fuelType");
         fuelStation = (FuelStation) getIntent().getSerializableExtra("fuelStation");
         setContentView(R.layout.activity_fuel_station_detail);
         init();
 
     }
 
+    //kkkkkk
+
     public void init(){
         userSession = new UserSession(this);
         averageTime  = (TextView) findViewById(R.id.fuelAverageTime);
         vehicleCount = (TextView) findViewById(R.id.fuelVehicleCount);
+        fuelFinishTimeTextView = (TextView) findViewById(R.id.fuelFinishTimeTextView);
+        fuelArrivalTimeTextView = (TextView) findViewById(R.id.fuelArrivalTimeTextView);
+        fuelAvailable = (TextView) findViewById(R.id.fuelAvailable);
         joinBtn     = (Button) findViewById(R.id.fuelStationDetailActivityJoinBtn);
         leaveBtn     = (Button) findViewById(R.id.fuelStationDetailActivityLeaveBtn);
 
         boolean userInQueue = userInQueue();
         joinBtn.setEnabled(!userInQueue);
         leaveBtn.setEnabled(userInQueue);
-        int    numberOfVehicles = getVehicleCount(fuelStation);
-        double averageTimeInQueue = getAverageTime(fuelStation);
+        int    numberOfVehicles = getVehicleCount(fuel);
+        double averageTimeInQueue = getAverageTime(fuel);
         this.vehicleCount.setText(Integer.toString(numberOfVehicles));
         this.averageTime.setText(Double.toString(averageTimeInQueue));
+        fuelFinishTimeTextView.setText(fuel.getFinishTime());
+        fuelArrivalTimeTextView.setText(fuel.getArrivalTime());
+        fuelAvailable.setText(fuel.isAvailable() ? "Available" : "Not Available");
+
+
+        if ( userSession != null) {
+            if (userSession.isUserLoggedIn() && userSession.getUserDetails().get(userSession.KEY_USER_TYPE).equals("Vehicle")){
+
+            }
+            else {
+                leaveBtn.setText("Fuel Finish");
+                joinBtn.setText("Fuel Arrived");
+            }
+        }
     }
 
     private boolean userInQueue() {
-        for (UserQueue userQueue : this.fuelStation.getUsersInQueue()){
+        for (UserQueue userQueue : this.fuel.getUsersInQueue()){
             if (userQueue.getUserId().equals(userSession.getUserDetails().get(userSession.KEY_ID)) && userQueue.getTimeLeft() == null){
                 return true;
             }
@@ -67,7 +92,7 @@ public class FuelStationDetailActivity extends AppCompatActivity {
     }
 
     private UserQueue getUserQueue() {
-        for (UserQueue userQueue : this.fuelStation.getUsersInQueue()){
+        for (UserQueue userQueue : this.fuel.getUsersInQueue()){
             System.out.println("USER_QUEUE");
             System.out.println(userQueue.getUserId() + " - " + userSession.getUserDetails().get(userSession.KEY_ID));
 
@@ -78,10 +103,10 @@ public class FuelStationDetailActivity extends AppCompatActivity {
         return null;
     }
 
-    private double getAverageTime(FuelStation fuelStation) {
+    private double getAverageTime(Fuel fuel) {
         long totalDiffInMinutes = 0;
         int count = 0;
-        for (UserQueue userQueue : fuelStation.getUsersInQueue()){
+        for (UserQueue userQueue : fuel.getUsersInQueue()){
             if (userQueue.getTimeArrived() != null && userQueue.getTimeLeft() != null) {
                 Date timeLeft = null;
                 Date timeArrived = null;
@@ -98,37 +123,25 @@ public class FuelStationDetailActivity extends AppCompatActivity {
                 totalDiffInMinutes = totalDiffInMinutes + diffInMinutes;
             }
         }
-        if (fuelStation.getUsersInQueue().isEmpty() || count == 0)
+        if (fuel.getUsersInQueue().isEmpty() || count == 0)
             return 0;
         return totalDiffInMinutes/count;
     }
 
     public void leaveQueue(View view){
-//        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-//        Date d = null;
-//        try {
-//            d = output.parse(String.valueOf(new Date()));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        String formattedTime = output.format(d);
 
         UserQueue userQueue = getUserQueue();
         userQueue.setTimeLeft(DateUtil.getCurrentTimeStamp());
 
         WebService webService = WebServiceClient.getInstance().getWebService();
-        Call<UserQueue> call = webService.leaveQueue(fuelStation.getId(),userQueue);
-        Log.d("INFO", "JOING QUEUE CALLED for station" + fuelStation.getId());
+        Call<UserQueue> call = webService.leaveQueue(fuelStation.getId(),fuel.getId(),userQueue);
+        Log.d("INFO", "JOING QUEUE CALLED for station" + fuel.getId());
         Log.d("INFO", "JOING QUEUE CALLED for station" + userQueue.getTimeLeft());
 
         call.enqueue(new Callback<UserQueue>() {
             @Override
             public void onResponse(Call<UserQueue> call, Response<UserQueue> response) {
-//                progressBar.setVisibility(View.GONE);
-//                Log.d("INFO", "onResponse: " + response.code());
-//                assert response.body() != null : "Response Body Empty";
-//                UserQueue userQueueResponse = response.body();
-//                Log.d("INFO", "onResponse: " + response.code() + "user ID - " + userQueueResponse.getUserId());
+
                 joinBtn.setEnabled(true);
                 leaveBtn.setEnabled(false);
             }
@@ -148,8 +161,8 @@ public class FuelStationDetailActivity extends AppCompatActivity {
         Log.d("INFO", "JOING QUEUE CALLED for 2" + userQueue.getUserId());
         Log.d("INFO", "JOING QUEUE CALLED for 3" + userQueue.getTimeArrived());
         WebService webService = WebServiceClient.getInstance().getWebService();
-        Call<UserQueue> call = webService.joinQueue(fuelStation.getId(),userQueue);
-        Log.d("INFO", "JOING QUEUE CALLED for station" + fuelStation.getId());
+        Call<UserQueue> call = webService.joinQueue(fuelStation.getId(),fuel.getId(),userQueue);
+        Log.d("INFO", "JOING QUEUE CALLED for station" + fuel.getId());
         Log.d("INFO", "JOING QUEUE CALLED for station" + userSession.getUserDetails().get(userSession.KEY_ID));
 
         call.enqueue(new Callback<UserQueue>() {
@@ -171,9 +184,9 @@ public class FuelStationDetailActivity extends AppCompatActivity {
             }
         });
     }
-    private int getVehicleCount(FuelStation fuelStation) {
+    private int getVehicleCount(Fuel fuel) {
         int count = 0;
-        for(UserQueue userQueue : fuelStation.getUsersInQueue()){
+        for(UserQueue userQueue : fuel.getUsersInQueue()){
             Log.d("INFO", "userQueue: " + userQueue.getUserId());
 
             if (userQueue.getTimeArrived() != null && userQueue.getTimeLeft() == null) {
