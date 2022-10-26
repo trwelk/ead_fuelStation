@@ -11,7 +11,7 @@
         android:id="@+id/tv_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/register"
+        android:text="@string/profile"
         android:textAlignment="center"
         android:textSize="50sp"
         android:layout_marginStart="25dp"
@@ -19,21 +19,12 @@
         android:fontFamily="@font/indigo_daisy"
         android:layout_marginTop="60dp"/>
 
-    <TextView
-        android:id="@+id/tv_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tag"
-        android:textSize="17sp"
-        android:fontFamily="@font/roboto_regular"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="50dp"/>
 
     <EditText
-        android:id="@+id/registerNameEditText"
+        android:id="@+id/updateNameEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/your_name"
+        android:hint="ifsapp2"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
@@ -44,10 +35,10 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/registerEmailEditText"
+        android:id="@+id/updateEmailEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/e_mail"
+        android:hint="ifsapp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
@@ -58,10 +49,10 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/registerPasswordEditText"
+        android:id="@+id/updatePasswordEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="@string/password"
+        android:hint="ifsapp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
@@ -70,13 +61,11 @@
         android:inputType="textPassword"
         android:background="@drawable/et_custom"
         android:textSize="15sp" />
-
-
     <AutoCompleteTextView
-        android:id="@+id/registerTypeEditText"
+        android:id="@+id/updateTypeEditText"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Account Type"
+        android:hint="Vehicle"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
@@ -85,55 +74,23 @@
         android:background="@drawable/et_custom"
         android:textSize="15sp"></AutoCompleteTextView>
 
-    <EditText
-        android:id="@+id/registerAddress"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="@string/address"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:padding="15dp"
-        android:fontFamily="@font/roboto_regular"
-        android:inputType="textPassword"
-        android:background="@drawable/et_custom"
-        android:textSize="15sp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/registerSubmitBtn"
+            android:id="@+id/updateSubmitBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/btn_custom"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/register"
+            android:text="@string/update"
             android:textColor="@android:color/white" />
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_arrow_left"
-            android:layout_above="@id/swipeLeft"
-            android:layout_centerHorizontal="true"/>
-
-        <TextView
-            android:id="@+id/swipeLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/swipe_right_for_login"
-            android:textSize="15sp"
-            android:fontFamily="@font/roboto_regular"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"/>
-
     </RelativeLayout>
 
 </LinearLayout>

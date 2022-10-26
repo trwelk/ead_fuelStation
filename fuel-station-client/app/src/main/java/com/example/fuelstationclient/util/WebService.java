@@ -38,6 +38,9 @@ public interface WebService {
     @POST("User")
     Call<User> registerUser(@Body User user);
 
+    @PATCH("User")
+    Call<User> updateUser(@Body User user);
+
     @POST("User/Login")
     Call<List<User>> loginUser(@Body User user);
 
