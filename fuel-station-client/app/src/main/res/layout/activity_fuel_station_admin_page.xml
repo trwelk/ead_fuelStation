@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#996C6C6C"
-    tools:context=".FuelStationDetailActivity">
+    tools:context=".FuelStationAdminPage">
 
     <TextView
-        android:id="@+id/fuelStationDetailActivityTitle"
+        android:id="@+id/fuelStationAdminActivityTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -21,7 +21,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fuelStationDetailActivityTitle"
+        android:layout_below="@id/fuelStationAdminActivityTitle"
         android:background="@color/material_on_primary_emphasis_medium"
         android:columnCount="2"
         android:rowCount="6">
@@ -51,30 +51,30 @@
                     android:layout_marginLeft="30dp"
                     android:src="@drawable/vehicle" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:gravity="center"
-                android:layout_marginLeft="10dp"
-                android:orientation="vertical">
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vehicles in Queue"
-                    android:width="250dp"
-                    android:textAlignment="center"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/fuelVehicleCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="9"
-                    android:textAlignment="textStart"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                    android:layout_gravity="left"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vehicles in Queue"
+                        android:width="250dp"
+                        android:textAlignment="center"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/adminFuelVehicleCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:textAlignment="textStart"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -122,10 +122,10 @@
                         android:textSize="24dp"
                         android:textStyle="bold" />
                     <TextView
-                        android:id="@+id/fuelAverageTime"
+                        android:id="@+id/adminFuelAverageTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="9"
+                        android:text="6 mins"
                         android:textAlignment="center"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -176,10 +176,10 @@
                         android:textSize="24dp"
                         android:textStyle="bold" />
                     <TextView
-                        android:id="@+id/fuelAvailable"
+                        android:id="@+id/adminFuelAvailable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="-"
+                        android:text="Available"
                         android:textAlignment="center"
                         android:textSize="24dp"
                         android:textStyle="bold" />
@@ -226,13 +226,12 @@
                         android:textSize="24dp"
                         android:textStyle="bold" />
                     <TextView
-                        android:id="@+id/fuelArrivalTimeTextView"
+                        android:id="@+id/adminFuelArrivalTimeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2022/10/26-10:32 PM"
                         android:textAlignment="center"
-                        android:textSize="16dp"
-                        android:textStyle="bold"/>
+                        android:textSize="16dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -277,7 +276,7 @@
                         android:textSize="24dp"
                         android:textStyle="bold" />
                     <TextView
-                        android:id="@+id/fuelFinishTimeTextView"
+                        android:id="@+id/adminFuelFinishTimeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="-"
@@ -309,29 +308,27 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center|center_horizontal"
+                    android:orientation="horizontal"
+                    >
 
                     <Button
-                        android:id="@+id/fuelStationDetailActivityJoinBtn"
+                        android:id="@+id/fuelStationAdminActivityJoinBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
                         android:background="@color/white"
-                        android:drawableLeft="@drawable/join"
-                        android:onClick="joinQueue"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="20dp"
 
-                        android:text="JOIN " />
+                        android:text="Fuel Arrived " />
 
                     <Button
-                        android:id="@+id/fuelStationDetailActivityLeaveBtn"
+                        android:id="@+id/fuelStationAdminActivityLeaveBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="110dp"
-                        android:layout_marginLeft="5dp"
-                        android:drawableLeft="@drawable/leave"
-                        android:onClick="leaveQueue"
-                        android:text="Leave " />
+                        android:layout_marginLeft="20dp"
+                        android:text="Fuel Finished " />
                 </LinearLayout>
 
 
