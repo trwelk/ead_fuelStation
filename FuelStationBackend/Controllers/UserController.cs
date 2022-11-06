@@ -43,4 +43,11 @@ public class UserController : Controller
         return NoContent();
     }
 
+      [HttpPost("Update")]
+    public async Task<List<User>> UpdateProfile([FromBody] User user)
+    {
+        return await _userService.Update(user);
+    }
+
+
 }

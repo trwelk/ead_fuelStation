@@ -882,19 +882,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Trewon\\.nuget\\packages\\": {}
+    "C:\\Users\\udith\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\workspace\\sliit\\year4s2\\EAD\\FuelStationBackend\\FuelStationBackend.csproj",
+      "projectUniqueName": "C:\\Users\\udith\\Documents\\GitHub\\ead_fuelStation\\FuelStationBackend\\FuelStationBackend.csproj",
       "projectName": "FuelStationBackend",
-      "projectPath": "C:\\workspace\\sliit\\year4s2\\EAD\\FuelStationBackend\\FuelStationBackend.csproj",
-      "packagesPath": "C:\\Users\\Trewon\\.nuget\\packages\\",
-      "outputPath": "C:\\workspace\\sliit\\year4s2\\EAD\\FuelStationBackend\\obj\\",
+      "projectPath": "C:\\Users\\udith\\Documents\\GitHub\\ead_fuelStation\\FuelStationBackend\\FuelStationBackend.csproj",
+      "packagesPath": "C:\\Users\\udith\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\udith\\Documents\\GitHub\\ead_fuelStation\\FuelStationBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Trewon\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\udith\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
