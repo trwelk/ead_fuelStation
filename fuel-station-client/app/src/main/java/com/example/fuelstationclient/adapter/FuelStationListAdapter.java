@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,17 +18,18 @@ import com.example.fuelstationclient.FuelStationFuelTypesActivity;
 import com.example.fuelstationclient.R;
 import com.example.fuelstationclient.model.FuelStation;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class FuelStationListAdapter extends RecyclerView.Adapter<FuelStationListAdapter.ViewHolder>{
+public class FuelStationListAdapter extends RecyclerView.Adapter<FuelStationListAdapter.ViewHolder> implements Filterable {
     private List<FuelStation> listdata;
+    private List<FuelStation> filteredListData;
 
     // RecyclerView recyclerView;
     public FuelStationListAdapter(List<FuelStation> listdata) {
+        this.filteredListData = listdata;
         this.listdata = listdata;
     }
-
-
 
     @NonNull
     @Override
@@ -58,6 +61,37 @@ public class FuelStationListAdapter extends RecyclerView.Adapter<FuelStationList
         return listdata == null ? 0 : listdata.size();
 
     }
+
+    @Override
+    public Filter getFilter() {
+        return fuelStationFilter;
+    }
+
+    private Filter fuelStationFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<FuelStation> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(listdata);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (FuelStation item : listdata) {
+                    if (item.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredListData.clear();
+            filteredListData.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
