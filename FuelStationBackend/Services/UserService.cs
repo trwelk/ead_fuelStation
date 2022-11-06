@@ -39,12 +39,4 @@ public class UserService
         return;
     }
 
-         public async Task<List<User>> Update(User user)
-    {
-        FilterDefinition<User> filter = Builders<User>.Filter.Where(x => x.email == user.email);
-        var updateResult = await _userCollection.ReplaceOneAsync(filter, user);
-        var updatedId = updateResult.UpsertedId;
-        FilterDefinition<User> filterUpdated = Builders<User>.Filter.Eq("Id", updatedId);
-        return await _userCollection.Find(filterUpdated).ToListAsync();
-    }
 }

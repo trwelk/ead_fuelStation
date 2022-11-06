@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("INFO", "MainActivity checking user session" + userSession.getUserDetails().get("id"));
 
         if ( userSession != null) {
-            if (userSession.isUserLoggedIn() /*&& userSession.getUserDetails().get(userSession.KEY_USER_TYPE).equals("Vehicle")*/){
+            if (userSession.isUserLoggedIn() && userSession.getUserDetails().get(userSession.KEY_USER_TYPE).equals("Vehicle")){
                 Log.d("INFO", "Already logged in" + userSession.getUserDetails().get("name"));
                 navigateToList();
             }

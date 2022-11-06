@@ -2,7 +2,6 @@ package com.example.fuelstationclient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,6 @@ import com.example.fuelstationclient.util.WebService;
 import com.example.fuelstationclient.util.WebServiceClient;
 
 import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,37 +55,34 @@ public class UserProfilePage extends AppCompatActivity {
     private User update(User user) {
         final User[] userResponse = new User[1];
         WebService webService = WebServiceClient.getInstance().getWebService();
-        Call<List<User>> call = webService.updateUser(user);
+        Call<User> call = webService.updateUser(user);
 
-        call.enqueue(new Callback<List<User>>() {
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
 //                progressBar.setVisibility(View.GONE);
                 assert response.body() != null : "Response Body Empty";
-                List<User> userResponse;
-                userResponse = response.body();
-                User updatedUser = userResponse.get(0);
-                if ( userResponse != null) {
-                    updateToSharedPreferences(updatedUser);
-                }
-
+                userResponse[0] = response.body();
+                responseId = userResponse[0].getId();
+                Log.d("TAG", "onResponse: " + response.code() + "user ID - " + responseId);
+                registerToSharedPreferences();
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
 //                progressBar.setVisibility(View.GONE);
-                Log.d("Update Fail", "onFailure: " + t.getLocalizedMessage());
+                Log.d("TAG", "onFailure: " + t.getLocalizedMessage());
             }
         });
         return userResponse[0];
     }
 
-    private void updateToSharedPreferences(User user){
-
-        userSession.createUserLoginSession(user.getName(),
-                user.getPassword(),
-                user.getId(),
-                user.getUserType());
+    private void registerToSharedPreferences(){
+        Log.d("TAG", "onResponse:trwe " + "user ID - " + responseId);
+        userSession.createUserLoginSession(updateNameEditText.getText().toString(),
+                updatePasswordEditText.getText().toString(),
+                responseId,
+                updateTypeEditText.getText().toString());
 
     }
 
