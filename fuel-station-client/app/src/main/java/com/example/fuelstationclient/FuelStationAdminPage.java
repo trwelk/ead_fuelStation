@@ -17,7 +17,6 @@ import com.example.fuelstationclient.util.WebService;
 import com.example.fuelstationclient.util.WebServiceClient;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +24,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FuelStationDetailActivity extends AppCompatActivity {
+public class FuelStationAdminPage extends AppCompatActivity {
+
     Fuel fuel;
     FuelStation fuelStation;
     UserSession userSession;
@@ -40,24 +40,21 @@ public class FuelStationDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fuel = (Fuel) getIntent().getSerializableExtra("fuelType");
-        fuelStation = (FuelStation) getIntent().getSerializableExtra("fuelStation");
-        setContentView(R.layout.activity_fuel_station_detail);
-        init();
-
+        setContentView(R.layout.activity_fuel_station_admin_page);
     }
+
 
     //kkkkkk
 
     public void init(){
         userSession = new UserSession(this);
-        averageTime  = (TextView) findViewById(R.id.fuelAverageTime);
-        vehicleCount = (TextView) findViewById(R.id.fuelVehicleCount);
-        fuelFinishTimeTextView = (TextView) findViewById(R.id.fuelFinishTimeTextView);
-        fuelArrivalTimeTextView = (TextView) findViewById(R.id.fuelArrivalTimeTextView);
-        fuelAvailable = (TextView) findViewById(R.id.fuelAvailable);
-        joinBtn     = (Button) findViewById(R.id.fuelStationDetailActivityJoinBtn);
-        leaveBtn     = (Button) findViewById(R.id.fuelStationDetailActivityLeaveBtn);
+        averageTime  = (TextView) findViewById(R.id.adminFuelAverageTime);
+        vehicleCount = (TextView) findViewById(R.id.adminFuelVehicleCount);
+        fuelFinishTimeTextView = (TextView) findViewById(R.id.adminFuelFinishTimeTextView);
+        fuelArrivalTimeTextView = (TextView) findViewById(R.id.adminFuelArrivalTimeTextView);
+        fuelAvailable = (TextView) findViewById(R.id.adminFuelAvailable);
+        joinBtn     = (Button) findViewById(R.id.fuelStationAdminActivityJoinBtn);
+        leaveBtn     = (Button) findViewById(R.id.fuelStationAdminActivityLeaveBtn);
 
         boolean userInQueue = userInQueue();
         joinBtn.setEnabled(!userInQueue);
@@ -70,6 +67,16 @@ public class FuelStationDetailActivity extends AppCompatActivity {
 //        fuelArrivalTimeTextView.setText(fuel.getArrivalTime());
         fuelAvailable.setText(fuel.isAvailable() ? "Available" : "Not Available");
 
+
+        if ( userSession != null) {
+            if (userSession.isUserLoggedIn() && userSession.getUserDetails().get(userSession.KEY_USER_TYPE).equals("Vehicle")){
+
+            }
+            else {
+                leaveBtn.setText("Fuel Finish");
+                joinBtn.setText("Fuel Arrived");
+            }
+        }
     }
 
     private boolean userInQueue() {

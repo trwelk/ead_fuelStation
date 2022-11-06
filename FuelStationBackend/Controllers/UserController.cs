@@ -31,7 +31,7 @@ public class UserController : Controller
     }
 
     [HttpPost("Login")]
-    public async Task<IActionResult> Login([FromBody] User user)
+    public async Task<List<User>> Login([FromBody] User user)
     {
         return await _userService.Login(user);
     }

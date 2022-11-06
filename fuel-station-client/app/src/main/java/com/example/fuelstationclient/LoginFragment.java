@@ -1,12 +1,28 @@
 package com.example.fuelstationclient;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.fuelstationclient.model.FuelStation;
+import com.example.fuelstationclient.model.User;
+import com.example.fuelstationclient.session.UserSession;
+import com.example.fuelstationclient.util.WebService;
+import com.example.fuelstationclient.util.WebServiceClient;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,8 +30,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class LoginFragment extends Fragment {
-
-
+    EditText loginPassword;
+    EditText loginEmail;
+    Button loginBtn;
+    UserSession userSession;
+    WebService webService;
     public LoginFragment() {
         // Required empty public constructor
     }
@@ -35,11 +54,12 @@ public class LoginFragment extends Fragment {
         loginEmail = getActivity().findViewById(R.id.loginEmailEditText);
         loginBtn = getActivity().findViewById(R.id.loginBtn);
         userSession = new UserSession(getContext());
-        webService = WebServiceClient.getInstance().getWebService();
+        webService = WebServiceClient.getInstance().getWebService();        
         loginBtn.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //Do stuff here
                 login();
+                System.out.println("trwelk123");
             }
         });
     }
@@ -111,4 +131,5 @@ public class LoginFragment extends Fragment {
         });
 
     }
+
 }

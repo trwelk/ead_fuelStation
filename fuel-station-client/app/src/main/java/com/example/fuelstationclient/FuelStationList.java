@@ -10,8 +10,10 @@ import android.widget.SearchView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.ProgressBar;
+
 import com.example.fuelstationclient.model.FuelStation;
-import com.example.fuelstationclient.util.FuelStationListAdapter;
+import com.example.fuelstationclient.adapter.FuelStationListAdapter;
 import com.example.fuelstationclient.util.WebService;
 import com.example.fuelstationclient.util.WebServiceClient;
 

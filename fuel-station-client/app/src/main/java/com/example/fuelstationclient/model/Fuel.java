@@ -3,7 +3,8 @@ package com.example.fuelstationclient.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 public class Fuel implements Serializable {
 
@@ -14,16 +15,26 @@ public class Fuel implements Serializable {
     @SerializedName("available")
     private boolean available;
     @SerializedName("arrivalTime")
-    private Date arrivalTime;
+    private String arrivalTime;
     @SerializedName("finishTime")
-    private Date finishTime;
+    private String finishTime;
 
-    public Fuel(String id, String fuelType, boolean available, Date arrivalTime, Date finishTime) {
-        this.id = id;
+    @SerializedName("usersInQueue")
+    private List<UserQueue> usersInQueue;
+
+    public List<UserQueue> getUsersInQueue() {
+        return usersInQueue;
+    }
+
+    public void setUsersInQueue(List<UserQueue> usersInQueue) {
+        this.usersInQueue = usersInQueue;
+    }
+
+    public Fuel( String fuelType) {
+        Random rand = new Random();
+        this.id = "FUEL-" + rand.nextInt(9999999);
         this.fuelType = fuelType;
-        this.available = available;
-        this.arrivalTime = arrivalTime;
-        this.finishTime = finishTime;
+        this.available = true;
     }
 
     public Fuel(String id, String fuelType, boolean available) {
@@ -56,19 +67,19 @@ public class Fuel implements Serializable {
         this.available = available;
     }
 
-    public Date getArrivalTime() {
+    public String getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public Date getFinishTime() {
+    public String getFinishTime() {
         return finishTime;
     }
 
-    public void setFinishTime(Date finishTime) {
+    public void setFinishTime(String finishTime) {
         this.finishTime = finishTime;
     }
 }

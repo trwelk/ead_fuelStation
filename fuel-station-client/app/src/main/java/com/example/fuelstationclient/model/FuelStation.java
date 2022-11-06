@@ -11,6 +11,9 @@ public class FuelStation implements Serializable  {
     @SerializedName("id")
     private String id;
 
+    @SerializedName("userId")
+    private String userId;
+
     @SerializedName("name")
     private String name;
 
@@ -18,6 +21,9 @@ public class FuelStation implements Serializable  {
     private String email;
     @SerializedName("password")
     private String password;
+
+    @SerializedName("address")
+    private String address;
 
     @SerializedName("latitude")
     private String latitude;
@@ -28,16 +34,30 @@ public class FuelStation implements Serializable  {
     @SerializedName("contactNumber")
     private String contactNumber;
 
-    @SerializedName("fuelStock")
-    private List<Fuel> fuelStock;
+    @SerializedName("fuelTypes")
+    private List<Fuel> fuelTypes;
 
-    @SerializedName("usersInQueue")
-    private List<UserQueue> usersInQueue;
+    public String getAddress() {
+        return address;
+    }
 
-    public FuelStation(String name, String email, String password) {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public FuelStation(String name, String email, String password, String address) {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.address = address;
     }
 
     public FuelStation(String id, String name, String email, String latitude, String longitude, String contactNumber) {
@@ -97,21 +117,19 @@ public class FuelStation implements Serializable  {
         this.contactNumber = contactNumber;
     }
 
-    public List<Fuel> getFuelStock() {
-        return fuelStock;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFuelStock(List<Fuel> fuelStock) {
-        this.fuelStock = fuelStock;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public List<UserQueue> getUsersInQueue() {
-        return usersInQueue;
+    public List<Fuel> getFuelTypes() {
+        return fuelTypes;
     }
 
-    public void setUsersInQueue(List<UserQueue> usersInQueue) {
-        this.usersInQueue = usersInQueue;
+    public void setFuelTypes(List<Fuel> fuelTypes) {
+        this.fuelTypes = fuelTypes;
     }
-
-
 }
