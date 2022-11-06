@@ -13,20 +13,24 @@
         android:theme="@style/Theme.FuelStationClient"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".FuelStationDetailActivity"
-            android:exported="true" />
-        <activity
             android:name=".FuelStationList"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.FuelStationClient.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".FuelStationFuelTypesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FuelStationDetailActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FuelStationClient.NoActionBar">
         </activity>
     </application>
 
