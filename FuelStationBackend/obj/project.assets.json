@@ -882,19 +882,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Trewon\\.nuget\\packages\\": {}
+    "C:\\Users\\ryanm\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\workspace\\sliit\\year4s2\\EAD\\FuelStationBackend\\FuelStationBackend.csproj",
+      "projectUniqueName": "E:\\OneDrive - Sri Lanka Institute of Information Technology\\SLIIT\\Year 4\\Semester 2\\Enterprise Application Development -\\Project\\ead_fuelStation\\FuelStationBackend\\FuelStationBackend.csproj",
       "projectName": "FuelStationBackend",
-      "projectPath": "C:\\workspace\\sliit\\year4s2\\EAD\\FuelStationBackend\\FuelStationBackend.csproj",
-      "packagesPath": "C:\\Users\\Trewon\\.nuget\\packages\\",
-      "outputPath": "C:\\workspace\\sliit\\year4s2\\EAD\\FuelStationBackend\\obj\\",
+      "projectPath": "E:\\OneDrive - Sri Lanka Institute of Information Technology\\SLIIT\\Year 4\\Semester 2\\Enterprise Application Development -\\Project\\ead_fuelStation\\FuelStationBackend\\FuelStationBackend.csproj",
+      "packagesPath": "C:\\Users\\ryanm\\.nuget\\packages\\",
+      "outputPath": "E:\\OneDrive - Sri Lanka Institute of Information Technology\\SLIIT\\Year 4\\Semester 2\\Enterprise Application Development -\\Project\\ead_fuelStation\\FuelStationBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Trewon\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\ryanm\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -946,7 +946,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\program files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

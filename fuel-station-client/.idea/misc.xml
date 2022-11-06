@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/drawable/ic_arrow_left.xml" value="0.38958333333333334" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/layout/activity_searchable_fuel_station_list.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/layout/example_item.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/layout/example_menu.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/layout/fragment_login.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/layout/fragment_register.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/layout/list_item.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/menu/example_menu.xml" value="0.3692708333333333" />
+        <entry key="..\:/OneDrive - Sri Lanka Institute of Information Technology/SLIIT/Year 4/Semester 2/Enterprise Application Development -/Project/ead_fuelStation/fuel-station-client/app/src/main/res/menu/fuel_menu.xml" value="0.20104166666666667" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/drawable/border.xml" value="0.14322916666666666" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/drawable/btn_custom.xml" value="0.26614583333333336" />
         <entry key="..\:/workspace/sliit/year4s2/fuel-station-client/app/src/main/res/drawable/et_custom.xml" value="0.26614583333333336" />

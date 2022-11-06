@@ -54,7 +54,8 @@ public class LoginFragment extends Fragment {
         loginEmail = getActivity().findViewById(R.id.loginEmailEditText);
         loginBtn = getActivity().findViewById(R.id.loginBtn);
         userSession = new UserSession(getContext());
-        webService = WebServiceClient.getInstance().getWebService();        loginBtn.setOnClickListener(new Button.OnClickListener() {
+        webService = WebServiceClient.getInstance().getWebService();        
+        loginBtn.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 //Do stuff here
                 login();
